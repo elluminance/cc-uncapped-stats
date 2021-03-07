@@ -98,3 +98,27 @@ sc.StatusViewMainParameters.inject({
 
 //uncaps status screen
 //to-do: that ^
+/*
+ * sc.something.inject({
+ *  init(){
+ *    makeNumbersBigPls();
+ *  }
+ * });
+ */
+
+//uncaps on trade screen
+sc.TradeToggleStats.inject({
+    _createContent(){
+        this.parent();
+        let a = 41;
+        var b = this.lineOffset;
+        let d = sc.model.player.equipParams;
+        this.baseParams.hp = this._createStatusDisplay(b, a, "maxhp", 0, 0, false, 99999, d.hp); // what's this?
+        a = a + 14;
+        this.baseParams.atk = this._createStatusDisplay(b, a, "atk", 0, 1, false, 9999, d.attack);
+        a = a + 14;
+        this.baseParams.def = this._createStatusDisplay(b, a, "def", 0, 2, false, 9999, d.defense);
+        a = a + 14;
+        this.baseParams.foc = this._createStatusDisplay(b, a, "foc", 0, 3, false, 9999, d.focus);
+    }
+})
