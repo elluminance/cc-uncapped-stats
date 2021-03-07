@@ -3,4 +3,3 @@ Removes the visual stat caps in CrossCode, along with making minor UI adjustment
 
 # To-Do
 - The "parameters" menu in Status.
-- Shops/trader equipment.
