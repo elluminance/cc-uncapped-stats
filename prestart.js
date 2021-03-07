@@ -110,9 +110,18 @@ sc.StatusViewMainParameters.inject({
 sc.TradeToggleStats.inject({
     _createContent(){
         this.parent();
-        let a = 41;
-        var b = this.lineOffset;
-        let d = sc.model.player.equipParams;
+        this.removeAllChildren();
+
+        this.addChildGui(this.compareText);
+        this.addChildGui(this.compareHelpText);
+        this.addChildGui(this.compareItem);
+        let d = new sc.TextGui(ig.lang.get("sc.gui.trade.stats"), {font: sc.fontsystem.tinyFont});
+        d.setPos(this.titleOffset, 31);
+        this.addChildGui(d);
+
+        let a = 41, 
+            b = this.lineOffset;
+        d = sc.model.player.equipParams;
         this.baseParams.hp = this._createStatusDisplay(b, a, "maxhp", 0, 0, false, 99999, d.hp); // what's this?
         a = a + 14;
         this.baseParams.atk = this._createStatusDisplay(b, a, "atk", 0, 1, false, 9999, d.attack);
@@ -120,5 +129,26 @@ sc.TradeToggleStats.inject({
         this.baseParams.def = this._createStatusDisplay(b, a, "def", 0, 2, false, 9999, d.defense);
         a = a + 14;
         this.baseParams.foc = this._createStatusDisplay(b, a, "foc", 0, 3, false, 9999, d.focus);
+        a = a + 16;
+        this.baseParams.fire = this._createStatusDisplay(b, a, "res", 1, 4, true, 999, d.elemFactor[0], 0);
+        a = a + 14;
+        this.baseParams.cold = this._createStatusDisplay(b, a, "res", 2, 5, true, 999, d.elemFactor[1], 1);
+        a = a + 14;
+        this.baseParams.shock = this._createStatusDisplay(b, a, "res", 3, 6, true, 999, d.elemFactor[2], 2);
+        a = a + 14;
+        this.baseParams.wave = this._createStatusDisplay(b, a, "res", 4, 7, true, 999, d.elemFactor[3], 3);
+        a = a + 14;
+
+        d = new sc.TextGui(ig.lang.get("sc.gui.trade.modifier"), {
+            font: sc.fontsystem.tinyFont
+        });
+        d.setPos(this.titleOffset, a);
+        this.addChildGui(d);
+        for (var c in sc.MODIFIERS) {
+            b = sc.MODIFIERS[c];
+            b = this._createStatusDisplay(this.lineOffset, 0, "modifier." + c, 5, b.icon, true, sc.MAX_MOD_VAL, 1, void 0, b.noPercent || false, c, b.order);
+            b.doStateTransition("HIDDEN", true);
+            this.modifierPool[c] = b
+        }
     }
 })
