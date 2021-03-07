@@ -32,7 +32,7 @@ sc.HpHudGui.inject({
             signed: true,
             transitionTime: 0.5
         });
-        this.hpNumber.setPos(6, 1);
+        this.hpNumber.setPos(7, 1);
         this.addChildGui(this.hpNumber);
     }
 })
