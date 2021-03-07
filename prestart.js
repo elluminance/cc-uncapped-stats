@@ -37,30 +37,18 @@ sc.HpHudGui.inject({
     }
 })
 
-
-/*
- *  note to future self: this "works" but there's two of them... 
- *  figure out a way to get rid of the original one!
- *  i'm probably just doing it wrong, and that's okay! :)
- */
-
-/*
- *  commented out for the time being due to not working as intended.
- *  if any modders who better know what they are doing than I do,
- *  I would really appreciate the help! :)
- */
-
 //uncaps on the equipment menu
-/* sc.EquipStatusContainer.inject({
+sc.EquipStatusContainer.inject({
     init(){
         this.parent();
+        this.removeAllChildren();
 
         let a = new sc.MenuPanel(sc.MenuPanelType.TOP_RIGHT_EDGE);
-
+        
         a.setSize(169, 121);
         a.setPivot(0, 0);
 
-        //this.addChildGui(a);
+        this.addChildGui(a);
 
         let b = 5, c = sc.model.player.equipParams;
         this.baseParams.hp = this._createStatusDisplay(0, b, "maxhp", 0, 0, false, 99999, c.hp, void 0, a);
@@ -77,8 +65,21 @@ sc.HpHudGui.inject({
         b = b + 14;
         this.baseParams.shock = this._createStatusDisplay(0, b, "res", 3, 6, true, 999, c.elemFactor[2], void 0, a);
         this.baseParams.wave = this._createStatusDisplay(0, b + 14, "res", 4, 7, true, 999, c.elemFactor[3], void 0, a);
+
+        a = new sc.HeaderMenuPanel(ig.lang.get("sc.gui.menu.equip.modifiers"), sc.MenuPanelType.TOP_RIGHT_EDGE);
+        a.setPos(0, 125);
+        a.setPivot(0, 0);
+        a.setSize(169, 139);
+        this.addChildGui(a);
+        this.modPanel = a;
+        for (var e in sc.MODIFIERS) {
+            b = sc.MODIFIERS[e];
+            b = this._createStatusDisplay(0, 0, "modifier." + e, 5, b.icon, true, sc.MAX_MOD_VAL, 1, b.noPercent || false, a, e, b.order);
+            b.doStateTransition("HIDDEN", true);
+            this.allModifiers[e] = b
+        }
     },
-}) */
+})
 
 //uncaps stats on status > summary screen
 sc.StatusViewMainParameters.inject({
@@ -87,7 +88,7 @@ sc.StatusViewMainParameters.inject({
         var a = 97;
         this.baseParams.hp = this.createStatusDisplay(0, a, "maxhp", 0, 0, false, 99999);
         a = a + 14;
-        this.baseParams.atk = this.createStatusDisplay(0, a, "atk", 0, 1, false, 9999); //hey!!!!
+        this.baseParams.atk = this.createStatusDisplay(0, a, "atk", 0, 1, false, 9999);
         a = a + 14;
         this.baseParams.def = this.createStatusDisplay(0, a, "def", 0, 2, false, 9999);
         a = a + 14;
