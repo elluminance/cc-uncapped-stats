@@ -44,18 +44,23 @@ sc.HpHudGui.inject({
  *  i'm probably just doing it wrong, and that's okay! :)
  */
 
+/*
+ *  commented out for the time being due to not working as intended.
+ *  if any modders who better know what they are doing than I do,
+ *  I would really appreciate the help! :)
+ */
+
 //uncaps on the equipment menu
-sc.EquipStatusContainer.inject({
+/* sc.EquipStatusContainer.inject({
     init(){
         this.parent();
 
         let a = new sc.MenuPanel(sc.MenuPanelType.TOP_RIGHT_EDGE);
-        this.removeChildGui(a)
 
         a.setSize(169, 121);
         a.setPivot(0, 0);
 
-        this.addChildGui(a);
+        //this.addChildGui(a);
 
         let b = 5, c = sc.model.player.equipParams;
         this.baseParams.hp = this._createStatusDisplay(0, b, "maxhp", 0, 0, false, 99999, c.hp, void 0, a);
@@ -73,9 +78,9 @@ sc.EquipStatusContainer.inject({
         this.baseParams.shock = this._createStatusDisplay(0, b, "res", 3, 6, true, 999, c.elemFactor[2], void 0, a);
         this.baseParams.wave = this._createStatusDisplay(0, b + 14, "res", 4, 7, true, 999, c.elemFactor[3], void 0, a);
     },
-})
+}) */
 
-//uncaps status screen parameters, not the actual status screen
+//uncaps stats on status > summary screen
 sc.StatusViewMainParameters.inject({
     init(){
         this.parent();
@@ -91,3 +96,4 @@ sc.StatusViewMainParameters.inject({
 })
 
 //uncaps status screen
+//to-do: that ^
