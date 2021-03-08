@@ -21,7 +21,7 @@ sc.ParamHudGui.inject({
     },
 })
 
-//modifies the actual hud of the GUI.
+//uncaps the HP bar
 sc.HpHudGui.inject({
     init(){
         this.parent();
@@ -96,8 +96,7 @@ sc.StatusViewMainParameters.inject({
     }
 })
 
-//uncaps status screen parameters
-
+//uncaps status > parameters
 sc.StatusParamBar.inject({
     init(a, b, c, e, f, g, h, i, j){
         this.parent();
@@ -197,7 +196,7 @@ sc.StatusParamBar.inject({
     }
 })
 
-//uncaps on trade screen
+//uncaps on trade/shop screen
 sc.TradeToggleStats.inject({
     _createContent(){
         this.parent();
@@ -213,7 +212,7 @@ sc.TradeToggleStats.inject({
         let a = 41, 
             b = this.lineOffset;
         d = sc.model.player.equipParams;
-        this.baseParams.hp = this._createStatusDisplay(b, a, "maxhp", 0, 0, false, 99999, d.hp); // what's this?
+        this.baseParams.hp = this._createStatusDisplay(b, a, "maxhp", 0, 0, false, 99999, d.hp);
         a = a + 14;
         this.baseParams.atk = this._createStatusDisplay(b, a, "atk", 0, 1, false, 9999, d.attack);
         a = a + 14;
