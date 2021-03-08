@@ -97,14 +97,104 @@ sc.StatusViewMainParameters.inject({
 })
 
 //uncaps status screen
-//to-do: that ^
-/*
- * sc.something.inject({
- *  init(){
- *    makeNumbersBigPls();
- *  }
- * });
- */
+
+sc.StatusParamBar.inject({
+    init(a, b, c, e, f, g, h, i, j){
+        this.parent();
+        this.setSize(Math.max(c || 169, 169), 24);
+        this.name = a || "nope.";
+        this.lineID = e || 0;
+        this.iconID = f || 0;
+        this.usePercent = g || false;
+        this._skillHidden = h || false;
+        this._noPercent = i || false;
+        this.iconIndex.x = this.iconID % sc.MODIFIER_ICON_DRAW.MAX_PER_ROW;
+        this.iconIndex.y = Math.floor(this.iconID / sc.MODIFIER_ICON_DRAW.MAX_PER_ROW);
+        this.nameGui = new sc.TextGui(a, {
+            font: sc.fontsystem.tinyFont
+        });
+        this.nameGui.setPos(13, 3);
+        this.addChildGui(this.nameGui);
+        a = this.usePercent ? 999 : 9999;
+        j && (a = 999);
+        this.base = new sc.NumberGui(a, {
+            signed: this.usePercent,
+            transitionTime: 0.2
+        });
+        this.base.setPos(83 - (this.usePercent ? 8 : 0), 3);
+        this.base.setNumber(0, true);
+        this.guis.push(this.base);
+        this.addTransitions(this.base);
+        this.addChildGui(this.base);
+        if (j) this.base.hook.pos.x = this.base.hook.pos.x + 8;
+        this.equip = new sc.NumberGui(a, {
+            signed: this.usePercent,
+            transitionTime: 0.2
+        });
+        this.equip.setPos(127 - (this.usePercent ? 8 : 0), 3);
+        this.equip.setNumber(0, true);
+        this.guis.push(this.equip);
+        this.addTransitions(this.equip);
+        this.addChildGui(this.equip);
+        if (j) this.equip.hook.pos.x = this.equip.hook.pos.x + 8;
+        this.equipAdd = new sc.NumberGui(a, {
+            signed: this.usePercent,
+            transitionTime: 0.2,
+            color: sc.GUI_NUMBER_COLOR.GREY
+        });
+        this.equipAdd.showPlus = true;
+        this.equipAdd.showPlusOnZero = true;
+        this.equipAdd.setPos(127 - (this.usePercent ? 8 : 0), 13);
+        this.addTransitions(this.equipAdd);
+        this.guis.push(this.equipAdd);
+        this.equipAdd.doStateTransition("HIDDEN", true);
+        this.addChildGui(this.equipAdd);
+        if (j) this.equipAdd.hook.pos.x = this.equipAdd.hook.pos.x + 8;
+        this.skills = new sc.NumberGui(a, {
+            signed: this.usePercent,
+            transitionTime: 0.2
+        });
+        this.skills.setPos(171 - (this.usePercent ? 8 : 0), 3);
+        this.skills.setNumber(0, true);
+        this.guis.push(this.skills);
+        this.addTransitions(this.skills);
+        this.addChildGui(this.skills);
+        if (j) this.skills.hook.pos.x = this.skills.hook.pos.x + 8;
+        h && this.skills.doStateTransition("HIDDEN", true);
+        this.skillAdd = new sc.NumberGui(a, {
+            signed: this.usePercent,
+            transitionTime: 0.2,
+            color: sc.GUI_NUMBER_COLOR.GREY
+        });
+        this.skillAdd.showPlus = true;
+        this.skillAdd.showPlusOnZero = true;
+        this.skillAdd.setPos(171 - (this.usePercent ? 8 : 0), 13);
+        this.skillAdd.setNumber(0, true);
+        this.addTransitions(this.skillAdd);
+        this.guis.push(this.skillAdd);
+        this.skillAdd.doStateTransition("HIDDEN", true);
+        this.addChildGui(this.skillAdd);
+        if (j) this.skillAdd.hook.pos.x = this.skillAdd.hook.pos.x + 8;
+        j = new ig.ImageGui(this.gfx, 6, 321, 4, 6);
+        j.setPos(119, 4);
+        this.guis.push(j);
+        this.addTransitions(j);
+        this.addChildGui(j);
+        j = new ig.ImageGui(this.gfx, 6, 321, 4, 6);
+        j.setPos(163, 4);
+        this.guis.push(j);
+        this.addTransitions(j);
+        this.addChildGui(j);
+        h && j.doStateTransition("HIDDEN", true);
+        this.description = new sc.TextGui(b, {
+            font: sc.fontsystem.smallFont,
+            maxWidth: 294 + (this._skillHidden ? 44 : 0),
+            linePadding: -3
+        });
+        this.description.setPos(214 - (this._skillHidden ? 44 : 0), 0);
+        this.addChildGui(this.description)
+    }
+})
 
 //uncaps on trade screen
 sc.TradeToggleStats.inject({
