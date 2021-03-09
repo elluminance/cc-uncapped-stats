@@ -1,6 +1,6 @@
 {
 	"name": "Uncapped Stats",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Removes the visual stat caps - see your stats for what they really are!",
 	"homepage": "https://github.com/EL20202/cc-uncapped-stats",
 	"module": true,
