@@ -49,6 +49,24 @@ sc.EquipStatusContainer.inject({
         a.setPivot(0, 0);
 
         this.addChildGui(a);
+        
+        //these little block here fixes so much more than it should tbh
+        a.hook.transitions = {
+            DEFAULT: {
+                state: {},
+                time: 0.2,
+                timeFunction: KEY_SPLINES.LINEAR
+            },
+            HIDDEN: {
+                state: {
+                    alpha: 0,
+                    scaleY: 0
+                },
+                time: 0.2,
+                timeFunction: KEY_SPLINES.LINEAR
+            }
+        };
+        this.statusPanel = a;
 
         let b = 5, c = sc.model.player.equipParams;
         this.baseParams.hp = this._createStatusDisplay(0, b, "maxhp", 0, 0, false, 99999, c.hp, void 0, a);
@@ -97,7 +115,6 @@ sc.EquipStatusContainer.inject({
         this.addChildGui(this.modMore);
         this.doStateTransition("HIDDEN", true)
     },
-    
 })
 
 //uncaps stats on status > summary screen
