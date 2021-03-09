@@ -78,7 +78,26 @@ sc.EquipStatusContainer.inject({
             b.doStateTransition("HIDDEN", true);
             this.allModifiers[e] = b
         }
+        this._setCurrentModifiers();
+        a = new ig.ColorGui("#7E7E7E", 169, 1);
+        a.setPos(0, 247);
+        this.addChildGui(a);
+        a = new ig.ImageGui(this.gfx, 528, 224, 13, 8);
+        a.setPos(3, 252);
+        this.addChildGui(a);
+        this.arrow = a;
+        a = new ig.ImageGui(this.gfx, 528, 224, 13, 8);
+        a.setAlign(ig.GUI_ALIGN.X_RIGHT, ig.GUI_ALIGN.Y_TOP);
+        a.setPos(3, 252);
+        this.addChildGui(a);
+        this.arrow2 = a;
+        a = new ig.ColorGui("#2C2D2D", 169, 1);
+        a.setPos(0, 264);
+        this.addChildGui(a);
+        this.addChildGui(this.modMore);
+        this.doStateTransition("HIDDEN", true)
     },
+    
 })
 
 //uncaps stats on status > summary screen
