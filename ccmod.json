@@ -6,7 +6,7 @@
 	"description": "Removes! the visual stat caps - see your stats for what they really are!",
 	
     "homepage": "https://github.com/EL20202/cc-uncapped-stats",
-	"prestart": "prestart.js",
+	"prestart": "./prestart.js",
     "icons": {
         "24": "icon.png"
     },
