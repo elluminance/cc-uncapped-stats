@@ -41,13 +41,12 @@ sc.HpHudGui.inject({
 sc.EquipStatusContainer.inject({
     init(){
         this.parent();
-        this.removeAllChildren();
+        this.removeChildGuiByIndex(0)
 
         let a = new sc.MenuPanel(sc.MenuPanelType.TOP_RIGHT_EDGE);
         
         a.setSize(169, 121);
         a.setPivot(0, 0);
-
         this.addChildGui(a);
         
         //these little block here fixes so much more than it should tbh
@@ -83,37 +82,6 @@ sc.EquipStatusContainer.inject({
         b = b + 14;
         this.baseParams.shock = this._createStatusDisplay(0, b, "res", 3, 6, true, 999, c.elemFactor[2], void 0, a);
         this.baseParams.wave = this._createStatusDisplay(0, b + 14, "res", 4, 7, true, 999, c.elemFactor[3], void 0, a);
-
-        a = new sc.HeaderMenuPanel(ig.lang.get("sc.gui.menu.equip.modifiers"), sc.MenuPanelType.TOP_RIGHT_EDGE);
-        a.setPos(0, 125);
-        a.setPivot(0, 0);
-        a.setSize(169, 139);
-        this.addChildGui(a);
-        this.modPanel = a;
-        for (var e in sc.MODIFIERS) {
-            b = sc.MODIFIERS[e];
-            b = this._createStatusDisplay(0, 0, "modifier." + e, 5, b.icon, true, sc.MAX_MOD_VAL, 1, b.noPercent || false, a, e, b.order);
-            b.doStateTransition("HIDDEN", true);
-            this.allModifiers[e] = b
-        }
-        this._setCurrentModifiers();
-        a = new ig.ColorGui("#7E7E7E", 169, 1);
-        a.setPos(0, 247);
-        this.addChildGui(a);
-        a = new ig.ImageGui(this.gfx, 528, 224, 13, 8);
-        a.setPos(3, 252);
-        this.addChildGui(a);
-        this.arrow = a;
-        a = new ig.ImageGui(this.gfx, 528, 224, 13, 8);
-        a.setAlign(ig.GUI_ALIGN.X_RIGHT, ig.GUI_ALIGN.Y_TOP);
-        a.setPos(3, 252);
-        this.addChildGui(a);
-        this.arrow2 = a;
-        a = new ig.ColorGui("#2C2D2D", 169, 1);
-        a.setPos(0, 264);
-        this.addChildGui(a);
-        this.addChildGui(this.modMore);
-        this.doStateTransition("HIDDEN", true)
     },
 })
 
