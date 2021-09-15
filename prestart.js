@@ -23,7 +23,10 @@ sc.ParamHudGui.inject({
 
 //uncaps the HP bar
 sc.HpHudGui.inject({
+    hasCedition: false,
+
     init(){
+        this.gfx = new ig.Image("media/gui/uncapped-hp.png")
         this.parent();
         this.setSize(68, 16);
         this.removeChildGui(this.hpNumber); //removes the original HP number
@@ -34,6 +37,11 @@ sc.HpHudGui.inject({
         });
         this.hpNumber.setPos(7, 1);
         this.addChildGui(this.hpNumber);
+        if(activeMods.filter(mod => mod.name == "cc-c-edition").length > 0) this.hasCedition = true;
+    },
+
+    updateDrawables(b) {
+        b.addGfx(this.gfx, 0, 0, 0, !this.hasCedition ? 0 : 16, this.hook.size.x, this.hook.size.y)
     }
 })
 
