@@ -1,11 +1,9 @@
 {
-	"name": "Uncapped Stats",
-	"version": "1.1.1",
+	"name": "cc-uncapped-stats",
+	"displayName": "Uncapped Stats",
+	"version": "2.0.0",
 	"description": "Removes the visual stat caps - see your stats for what they really are!",
 	"homepage": "https://github.com/EL20202/cc-uncapped-stats",
 	"module": true,
-	"prestart": "prestart.js",
-	"ccmodDependencies": {
-		"ccloader": "^2.20.0"
-	}
+	"prestart": "prestart.js"
 }

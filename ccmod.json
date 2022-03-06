@@ -1,6 +1,6 @@
 {
     "id": "cc-uncapped-stats",
-	"version": "1.1.1",
+	"version": "2.0.0",
 
 	"title": "Uncapped Stats",
 	"description": "Removes! the visual stat caps - see your stats for what they really are!",
@@ -9,9 +9,5 @@
 	"prestart": "prestart.js",
     "icons": {
         "24": "icon.png"
-    },
-
-	"dependencies": {
-        "ccloader": "^2.20.0"
-	}
+    }
 }
